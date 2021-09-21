@@ -2,7 +2,7 @@
   <swiper>
     <swiper-item v-for="(item, id) in banners" :key="id">
       <a :href="item.link">
-        <img :src="item.image" alt="">
+        <img :src="item.image" alt="" @load="loadSuccess">
       </a>
     </swiper-item>
   </swiper>
@@ -12,6 +12,11 @@
 import {Swiper, SwiperItem} from 'components/common/swiper'
 export default {
   name: "HomeSwiper",
+  data() {
+    return {
+      isImgLoad: false
+    }
+  },
   props: {
     banners: {
       type: Array,
@@ -23,6 +28,14 @@ export default {
   components: {
     Swiper,
     SwiperItem
+  },
+  methods: {
+    loadSuccess() {
+      if(!this.isImgLoad) {
+        this.$emit('loadSuccess')
+        this.isImgLoad = true
+      }
+    }
   }
 }
 </script>

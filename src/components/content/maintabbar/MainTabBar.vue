@@ -1,6 +1,5 @@
 <template>
   <div>
-    <router-view></router-view>
     <tab-bar>
       <template v-slot:default>
         <tab-bar-item path="/home" active-color="red">
